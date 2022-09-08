@@ -1,0 +1,19 @@
+clear all;
+clc;
+syms s eps kd
+%kd kp kd
+%kd = -100;
+ki = -500;
+kp = -1000;
+C = (kd*s^2+ kp*s + ki);
+N3 = -(1.08*s + 0.0094);
+N4 = 12.422
+D2 = (38.5*s + 10.35)
+D1 = s^2-0.0014*s - 12.077;
+CE = collect(expand(D1*D2*s + C*N3), s)
+k = solve(CE==0, kd);
+[poles, zeros]=numden(-k)
+poles = double(flip(coeffs(poles, s)))
+zeros = double(flip(coeffs(zeros, s)))
+G = tf(zeros, poles)
+rlocus(G)
