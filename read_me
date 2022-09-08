@@ -1,0 +1,43 @@
+Part1
+
+1. Find the Laplace representations of the outputs θ(t) and x˙(t) in terms of both voltage input V and
+disturbance d.
+2. Analyze the stability of the outputs found in the previous step.
+3. Since the sensors on the vehicle can measure only θ and ˙θ, the state x˙ is not available. Without using x˙
+in the control design, construct a controller using θ,
+˙θ and integral of θ for stabilizing the output θ(t)
+around the vertical (i.e., you are designing a PID controller). This PID controller regulates the voltage
+inputs to the motor. Using Routh’s array, find a set of controller gains kp, kI and kD with which θ(t) is
+asymptotically stable.
+4. With the PID gains found in Step 3, show whether or not x˙ is stable.
+5. Using Root Locus analysis, tune either one of the PID controller gains in Step 3, such that system’s
+settling time is reduced as determined by dominant poles.
+6. Simulate the time domain behavior of θ(t) and x˙(t) with the implemented PID controller at Step 3 and
+assuming the following conditions separately hold: (i) the disturbance is a unit impulse, (ii) the rider
+leans forward and keeps a constant disturbance d.
+7. Assume that the motor can deliver only ∓15 Volts. Connect a ‘saturation block’ to the output of your
+controller in your simulation and compare Segway’s responses with those in Step 6. Use the PID design
+from Step 3 for this analysis.
+
+
+
+Part2:
+1. Instead of using a PID controller, propose a customized high-order compensator with gain K in order
+to stabilize θ(t) of the Segway vehicle (this compensator will have at least two stable poles). Show,
+using Root Locus and Matlab simulations, that the designed compensator stabilizes the system. You do
+NOT need to use angle deficiency to design the compensator but you can follow a qualitative approach
+and place the compensator poles/zeros to move the root locus to the stable left-half plane. Pole/zero
+cancellation is NOT allowed.
+2. Write the governing dynamics in state space form z˙(t) = Az(t)+Bu(t)+T, where z(t) = (θ, ˙θ, x˙)
+> is the state vector, A and B are state and control matrices, respectively, u is the controller (which contains
+the voltage supplied from the motor) and T is the vector containing the disturbance torque mgd/J.
+Assuming no disturbance and no controller input, analyze the system’s stability.
+3. Using Matlab, show whether or not the system is controllable and/or observable.
+4. Disregarding the disturbance, use Matlab to transform the state-space representation into control canonical form and modal canonical form.
+5. We next aim to stabilize the system by designing a controller that calculates the voltage V based on
+full-state feedback (all states are measurable). Disregarding the disturbance, use the ACKER command
+in Matlab to design a control law K such that V = −Kz(t) places the closed loop poles at some desired
+positions determined by the control designer (student picks the poles).
+6. With the control law K from the previous step, and considering the rider’s disturbance (impulse and/or
+step), simulate the states. Discuss the results in connection with the results obtained in Part 1 of the
+project where only θ was available for the controller
